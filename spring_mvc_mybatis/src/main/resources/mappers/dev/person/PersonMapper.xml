@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fj.dao.PersonDao">
+	<sql id="person_s_columns">
+		${prefix}.id as id, ${prefix}.name as name, ${prefix}.age as age
+	</sql>
+	<sql id="person_c_columns">
+		name, age
+	</sql>
+	<sql id="alias">
+		<include refid="person_s_columns">
+				<property name="prefix" value="p"/>
+		</include>
+	</sql>
+	<select id="get" parameterType="int" resultType="PersonDO">
+		select <include refid="alias"/>
+		from t_person p
+		where p.id = #{id}	
+	</select>
+	<select id="getList" resultType="PersonDO">
+		select <include refid="alias"/>
+		from t_person p
+	</select>
+	<update id="update" parameterType="PersonDO">
+		update t_person 
+		<set>
+			<if test="name != null and name != ''">
+				name = #{name},
+			</if>
+			<if test="age != null">
+				age = #{age}
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<insert id="insert" parameterType="personDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_person(<include refid="person_c_columns"/>)
+		values(#{name},#{age})
+	</insert>
+</mapper>
