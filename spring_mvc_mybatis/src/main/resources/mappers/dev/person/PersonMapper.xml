@@ -21,19 +21,19 @@
 		select <include refid="alias"/>
 		from t_person p
 	</select>
-	<update id="update" parameterType="PersonDO">
+	<update id="update" parameterType="map">
 		update t_person 
 		<set>
-			<if test="name != null and name != ''">
-				name = #{name},
+			<if test="pDo.name != null and pDo.name != ''">
+				name = #{pDo.name},
 			</if>
-			<if test="age != null">
-				age = #{age}
+			<if test="pDo.age != null">
+				age = #{pDo.age}
 			</if>
 		</set>
 		where id = #{id}
 	</update>
-	<insert id="insert" parameterType="personDO" useGeneratedKeys="true" keyProperty="id">
+	<insert id="insert" parameterType="PersonDO" useGeneratedKeys="true" keyProperty="id">
 		insert into t_person(<include refid="person_c_columns"/>)
 		values(#{name},#{age})
 	</insert>

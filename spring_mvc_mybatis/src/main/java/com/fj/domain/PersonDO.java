@@ -33,5 +33,8 @@ public class PersonDO {
 		this.age = age;
 	}
 	
+	public static void main(String[] args) {
+		System.out.println(new Integer(null));
+	}
 
 }
