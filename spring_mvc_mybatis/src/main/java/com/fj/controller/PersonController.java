@@ -1,11 +1,15 @@
 package com.fj.controller;
 
+import java.io.IOException;
 import java.util.Arrays;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fj.Result;
@@ -48,4 +52,10 @@ public class PersonController {
 		}
 		return new Result("200", true, "");
 	} 
+	
+	@RequestMapping(value = "jp")
+	public void jsonp(@RequestParam("callbackTest") String callbackTest, HttpServletResponse response) throws IOException {
+		response.setContentType("text/plain");
+		response.getWriter().write(callbackTest + "({name: \"jf\", age: \"12\"})");
+	}
 }

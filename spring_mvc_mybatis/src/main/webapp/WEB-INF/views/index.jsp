@@ -12,6 +12,7 @@
   		<div class="">
   			<button id="insert">新增</button>
   			<button id="update">修改</button>
+  			<button id="callback">JSONP</button>
   		</div>
   	</div>
   	<script type="text/javascript" src="/static/jquery-3.2.1.js"></script>
@@ -56,6 +57,27 @@
   	  				}
   				});
   			});
+  			function testFunction(data) {
+  				console.info('-----');
+  				console.info(data);
+  				console.info('+++++');
+  			}
+  			$("#callback").click(function() {
+  			     $.ajax({  
+  			        url:'/jp',
+  			        type: "get",
+  			        async: false,
+  			        dataType: "jsonp",  
+  			        jsonp: "callbackTest", //服务端用于接收callback调用的function名的参数                     是键 
+  			        jsonpCallback: "testFunction", //callback的function名称,服务端会把名称和data一起传递回来   是值
+  			        success: function(json) { 
+  			        		console.info(json);
+  			        },  
+  			        error: function(){
+  			        		alert('Error');
+  			        	}  
+  				});  
+  			});  
   		});
   	</script>
   </body>

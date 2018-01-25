@@ -21,7 +21,7 @@
 		select <include refid="alias"/>
 		from t_person p
 	</select>
-	<update id="update" parameterType="map">
+	<update id="update" parameterType="PersonDO">
 		update t_person 
 		<set>
 			<if test="pDo.name != null and pDo.name != ''">

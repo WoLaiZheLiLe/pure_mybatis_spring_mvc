@@ -16,6 +16,11 @@ public class PersonServiceImpl implements PersonService {
 	@Autowired
 	private PersonDao personDao;
 	
+	/* (non-Javadoc)
+	 * @see com.fj.service.PersonService#insert(java.util.List)
+	 *insert
+	 *PersonServiceImpl
+	 */
 	@Transactional
 	public Integer insert(List<PersonDO> personDOList) throws Exception {
 		Integer count = 0;
