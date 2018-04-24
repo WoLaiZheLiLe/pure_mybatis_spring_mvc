@@ -3,6 +3,7 @@ package priv.fj.webapp.dev.test;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.alibaba.fastjson.JSON;
 import com.fj.dao.PersonDao;
 import com.fj.domain.PersonDO;
 
@@ -22,5 +23,20 @@ public class PersonDaoTest extends BaseTest {
 		//Integer count = personDao.insert(personDo);
 		//System.out.println(count);
 	}
+	
+	@Test
+	public void testUpdate() {
+		PersonDO personDo = new PersonDO();
+		personDo.setName(null);
+		personDao.updateStatus(1, personDo);
+	}
+	
+	@Test
+	public void testSelect() {
+		
+		PersonDO query = personDao.query("a");
+		System.out.println(JSON.toJSONString(query));
+	}
+
 
 }

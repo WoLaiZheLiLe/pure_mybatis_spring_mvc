@@ -1,5 +1,8 @@
 package com.fj;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Result {
 	
 	private String code;
@@ -35,6 +38,11 @@ public class Result {
 	}
 	public void setErrMsg(String errMsg) {
 		this.errMsg = errMsg;
+	}
+	public static void main(String[] args) {
+		for (int i = 0; i < 79; i++) {
+			System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+		}
 	}
 	
 }
