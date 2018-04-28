@@ -13,7 +13,7 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd"
-	default-lazy-init="true">
+	default-lazy-init="false">
 	<!-- 方法注入 -->
 	<bean id="personIdService" scope="singleton"  class="com.test.lookup.PersonIdServiceImpl" >
 		<lookup-method name="getToolServiceBean"  bean="toolService"/> 
@@ -26,4 +26,20 @@
 		<property name="books" value="#{{myProperties.confb, myProperties.confb}}"></property>
 	</bean>
 	<util:properties id="myProperties" location="classpath*:/configruation/config/config.properties"/>
+	
+	<bean id="axe" class="com.test.postprocessor.SteelAxe"/>
+	<bean id="person" class="com.test.postprocessor.Chinese">
+		<property name="name" value="jf"/>
+		<property name="axe" ref="axe"/>
+	</bean>
+	<bean class="com.test.postprocessor.MyBeanPostProcessor"/>
+	<bean class="com.test.postprocessor.MyBeanFactoryPostProcessor"/>
+	
+	<bean id="axeLifestyle" class="com.test.lifestyle.SteelAxe"/>
+	<bean id="personLifeStyle" class="com.test.lifestyle.Chinese">
+		<property name="name" value="jf"/>
+		<property name="axe" ref="axeLifestyle"/>
+	</bean>
+	<!-- 很重要, 在使用零配置时，若不使用<context:component-scan>  -->
+	<context:annotation-config />
 </beans>

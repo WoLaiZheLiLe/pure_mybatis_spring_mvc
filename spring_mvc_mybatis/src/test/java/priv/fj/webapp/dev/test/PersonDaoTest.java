@@ -28,14 +28,14 @@ public class PersonDaoTest extends BaseTest {
 	public void testUpdate() {
 		PersonDO personDo = new PersonDO();
 		personDo.setName(null);
-		personDao.updateStatus(1, personDo);
+		//personDao.updateStatus(1, personDo);
 	}
 	
 	@Test
 	public void testSelect() {
 		
-		PersonDO query = personDao.query("a");
-		System.out.println(JSON.toJSONString(query));
+		//PersonDO query = personDao.query("a");
+		//System.out.println(JSON.toJSONString(query));
 	}
 
 

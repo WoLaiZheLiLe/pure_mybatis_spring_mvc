@@ -12,27 +12,7 @@
 				<property name="prefix" value="p"/>
 		</include>
 	</sql>
-	<select id="get" parameterType="int" resultType="PersonDO">
-		select <include refid="alias"/>
-		from t_person p
-		where p.id = #{id}	
-	</select>
-	<select id="getList" resultType="PersonDO">
-		select <include refid="alias"/>
-		from t_person p
-	</select>
-	<update id="update" parameterType="PersonDO">
-		update t_person 
-		<set>
-			<if test="pDo.name != null and pDo.name != ''">
-				name = #{pDo.name},
-			</if>
-			<if test="pDo.age != null">
-				age = #{pDo.age}
-			</if>
-		</set>
-		where id = #{id}
-	</update>
+	
 	<insert id="insert" parameterType="PersonDO" useGeneratedKeys="true" keyProperty="id">
 		insert into t_person(<include refid="person_c_columns"/>)
 		values(#{name},#{age})
@@ -54,5 +34,9 @@
 			</if>
 		</where>  -->
 	</select>
-	
+	<update id="updatePerson" parameterType="map">
+		update t_person
+		set age = #{age}
+		where id = #{id}
+	</update>
 </mapper>

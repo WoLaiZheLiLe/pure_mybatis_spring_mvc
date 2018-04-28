@@ -7,8 +7,9 @@ import com.fj.domain.PersonDO;
 
 @Repository
 public interface PersonDao {
+	
 	Integer insert(PersonDO personDO);
-	Integer update(@Param("id") Integer id, @Param("pDo") PersonDO personDO);
-	Integer updateStatus(@Param("id") Integer id, @Param("pDo") PersonDO personDO);
-	PersonDO query(@Param("t") String t);
+	
+	Integer updatePerson(@Param("id") Integer id, @Param("name") Integer age);
+	
 }

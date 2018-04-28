@@ -1035,4 +1035,9 @@
       zhima_score = #{zhimaScore,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateOrderNo" parameterType="map">
+  	update  order_infos 
+  	set order_number = #{orderNo}
+  	where id = #{id}
+  </update>
 </mapper>

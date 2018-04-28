@@ -17,5 +17,6 @@ public interface PersonService {
 	*/
 	public Integer insert(List<PersonDO> personDO) throws Exception;
 	
-	public Integer update(Integer id, List<PersonDO> personDO); 
+	
+	public boolean updatePerson(Integer orderId, Integer id, Integer age);
 }

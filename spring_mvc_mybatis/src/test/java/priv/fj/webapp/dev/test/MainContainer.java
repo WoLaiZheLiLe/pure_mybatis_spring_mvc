@@ -2,7 +2,6 @@ package priv.fj.webapp.dev.test;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -11,6 +10,8 @@ import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
 import com.test.lookup.PersonIdService;
 import com.test.lookup.TooleService;
@@ -70,11 +71,10 @@ public class MainContainer {
 		Object value = expression.getValue(eCtx);
 		System.out.println(value);
 	}
+	
 	public static void main(String[] args) throws ClassNotFoundException {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext(path);
-		
-		System.out.println(UUID.randomUUID().toString());
-		System.out.println(UUID.randomUUID().toString());
+		TransactionStatus status = TransactionAspectSupport.currentTransactionStatus();
 	}
 	
 	

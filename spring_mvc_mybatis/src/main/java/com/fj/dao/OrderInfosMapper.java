@@ -1,10 +1,14 @@
 package com.fj.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
+
 import com.fj.domain.OrderInfos;
 import com.fj.domain.OrderInfosExample;
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+@Repository
 public interface OrderInfosMapper {
     long countByExample(OrderInfosExample example);
 
@@ -27,4 +31,6 @@ public interface OrderInfosMapper {
     int updateByPrimaryKeySelective(OrderInfos record);
 
     int updateByPrimaryKey(OrderInfos record);
+    
+    int updateOrderNo(@Param("id") Integer id, @Param("orderNo") String orderNo);
 }

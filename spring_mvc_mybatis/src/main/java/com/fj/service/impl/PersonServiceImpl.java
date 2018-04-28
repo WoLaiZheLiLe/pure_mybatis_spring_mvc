@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fj.dao.PersonDao;
 import com.fj.domain.PersonDO;
+import com.fj.service.OrderInfoService;
 import com.fj.service.PersonService;
 
 @Service("personServiceImpl")
@@ -15,6 +16,9 @@ public class PersonServiceImpl implements PersonService {
 	
 	@Autowired
 	private PersonDao personDao;
+	
+	@Autowired
+	private OrderInfoService orderInfoService;
 	
 	/* (non-Javadoc)
 	 * @see com.fj.service.PersonService#insert(java.util.List)
@@ -48,14 +52,17 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Transactional
-	@Override
-	public Integer update(Integer id, List<PersonDO> personDOList) {
-		// TODO Auto-generated method stub
-		Integer count = 0;
-		for (PersonDO personDo : personDOList) {
-			personDao.update(id, personDo);
-			count++;
+	public boolean updatePerson(Integer orderId, Integer id, Integer age) {
+		try {
+			orderInfoService.updateOrderNo(orderId, "aaaaaaa");
+		} catch(Exception e)  {
+			System.out.println(e.getMessage());
 		}
-		return count;
+		Integer updatePerson = personDao.updatePerson(id, age);
+		if (updatePerson == 1) {
+			return true;
+		}
+		return false;
 	}
+
 }
