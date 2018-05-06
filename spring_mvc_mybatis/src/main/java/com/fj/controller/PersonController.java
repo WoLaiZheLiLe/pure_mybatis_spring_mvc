@@ -47,7 +47,7 @@ public class PersonController {
 	@ResponseBody
 	public Result update(@RequestBody PersonDO[] personDOArr)  {
 		try {
-			Integer count = personService.update(2, Arrays.asList(personDOArr));
+			Integer count = 0;//personService.update(2, Arrays.asList(personDOArr));
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

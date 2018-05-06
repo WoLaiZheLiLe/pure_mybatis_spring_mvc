@@ -10,9 +10,8 @@ import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 
+import com.test.aop.HellowWorld;
 import com.test.lookup.PersonIdService;
 import com.test.lookup.TooleService;
 import com.test.spel.SpelService;
@@ -20,6 +19,8 @@ import com.test.spel.SpelService;
 public class MainContainer {
 	
 	public static String path = "classpath*:/configruation/spring/spring-test.xml";
+	
+	public static String aopPath = "classpath*:/configruation/spring/spring-test-aop.xml";
 	
 	/** 
 	* @description: TODO
@@ -73,9 +74,13 @@ public class MainContainer {
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext(path);
-		TransactionStatus status = TransactionAspectSupport.currentTransactionStatus();
+		ApplicationContext ctx = new ClassPathXmlApplicationContext(aopPath);
+//		TransactionStatus status = TransactionAspectSupport.currentTransactionStatus();
+		aop(ctx);
 	}
 	
-	
+	public static void aop(ApplicationContext ctx) {
+		HellowWorld bean = ctx.getBean("helloWorld", HellowWorld.class);
+		bean.say("jifei");
+	}
 }

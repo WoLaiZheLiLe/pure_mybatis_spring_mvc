@@ -41,5 +41,10 @@
 		<property name="axe" ref="axeLifestyle"/>
 	</bean>
 	<!-- 很重要, 在使用零配置时，若不使用<context:component-scan>  -->
-	<context:annotation-config />
+	<!-- <context:annotation-config /> -->
+	
+	<context:component-scan base-package="com.test.aop">
+		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
+	</context:component-scan>
+	
 </beans>

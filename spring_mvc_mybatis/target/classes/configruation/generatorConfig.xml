@@ -41,7 +41,8 @@
     </javaClientGenerator>
     
     <!-- 表 -->
-    <table tableName="order_infos" >
+    <table tableName="order_infos" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"    
+               enableSelectByExample="false" selectByExampleQueryId="false" mapperName="OrderInfoDao">
       <!-- <columnOverride column="???" property="???" /> -->
     </table>
     
