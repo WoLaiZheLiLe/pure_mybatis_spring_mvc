@@ -12,6 +12,7 @@ import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.StandardEvaluationContext;
 
 import com.test.aop.HellowWorld;
+import com.test.cache.spring.Hello;
 import com.test.lookup.PersonIdService;
 import com.test.lookup.TooleService;
 import com.test.spel.SpelService;
@@ -21,6 +22,8 @@ public class MainContainer {
 	public static String path = "classpath*:/configruation/spring/spring-test.xml";
 	
 	public static String aopPath = "classpath*:/configruation/spring/spring-test-aop.xml";
+	
+	public static String cachePath ="classpath*:/configruation/spring/spring-test-cache.xml";
 	
 	/** 
 	* @description: TODO
@@ -74,13 +77,23 @@ public class MainContainer {
 	}
 	
 	public static void main(String[] args) throws ClassNotFoundException {
-		ApplicationContext ctx = new ClassPathXmlApplicationContext(aopPath);
+		ApplicationContext ctx = new ClassPathXmlApplicationContext(cachePath);
 //		TransactionStatus status = TransactionAspectSupport.currentTransactionStatus();
-		aop(ctx);
+		//aop(ctx);
+		cache(ctx);
 	}
 	
 	public static void aop(ApplicationContext ctx) {
 		HellowWorld bean = ctx.getBean("helloWorld", HellowWorld.class);
 		bean.say("jifei");
+	}
+	
+	public static void cache(ApplicationContext ctx) {
+		Hello bean = ctx.getBean("hello", Hello.class);
+		char name = bean.getName(1);
+		bean.setName(1, 'a');
+		char name2 = bean.getName(1);
+		System.out.println(name);
+		System.out.println(name2);
 	}
 }

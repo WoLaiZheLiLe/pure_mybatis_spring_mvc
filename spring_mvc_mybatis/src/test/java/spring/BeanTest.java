@@ -38,4 +38,14 @@ public class BeanTest {
 		TestController3 tc3 = ctx.getBean("testController3", TestController3.class);
 		tc3.print();
 	}
+	
+	public static void main(String[] args) {
+		try {
+			//return ;
+		} catch(Exception e) {
+			return;
+		} finally {
+			System.out.println("------");
+		}
+	}
 }

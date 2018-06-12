@@ -20,5 +20,13 @@ public class A {
 		this.obj = obj;
 	}
 	
-	
+	public static void main(String[] args) {
+		TestEnum test = TestEnum.A;
+		switch(test) {
+			case A: 
+				System.out.println("aa");break;
+			case B: break;
+		}
+		return;
+	}
 }

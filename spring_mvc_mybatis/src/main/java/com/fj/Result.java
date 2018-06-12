@@ -1,7 +1,9 @@
 package com.fj;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.collections.CollectionUtils;
 
 public class Result {
 	
@@ -40,9 +42,18 @@ public class Result {
 		this.errMsg = errMsg;
 	}
 	public static void main(String[] args) {
-		for (int i = 0; i < 79; i++) {
-			System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-		}
+		List<String> a = new ArrayList<String>();
+		a.add("1");
+		a.add("2");
+		a.add("3");
+		List<String> b = new ArrayList<String>();
+		b.add("5");
+		b.add("6");
+		b.add("7");
+		b.add("1");
+		b.add("1");
+		System.out.println(CollectionUtils.subtract(a, b));
 	}
+	
 	
 }
