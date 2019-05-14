@@ -1,5 +1,7 @@
 package com.test.aop;
 
+import java.math.BigDecimal;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -46,5 +48,9 @@ public class MyAop {
 	@AfterThrowing(value = "match()", throwing = "e")
 	public void afterThrowing(JoinPoint joinPoint, Throwable e) {
 		System.out.println("异常抛出：----afterThrowing" + e);
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(new BigDecimal(0).compareTo(new BigDecimal(0)) <= 0);
 	}
 }

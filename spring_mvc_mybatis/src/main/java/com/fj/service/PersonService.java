@@ -2,6 +2,8 @@ package com.fj.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.fj.domain.PersonDO;
 
 public interface PersonService {
@@ -19,4 +21,6 @@ public interface PersonService {
 	
 	
 	public boolean updatePerson(Integer orderId, Integer id, Integer age);
+	
+	PersonDO queryById(@Param("id") Integer id);
 }

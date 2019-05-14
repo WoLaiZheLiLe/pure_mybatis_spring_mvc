@@ -2,18 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fj.dao.PersonDao">
 	<sql id="person_s_columns">
-		${prefix}.id as id, ${prefix}.name as name, ${prefix}.age as age
+		id as id, name as name, age as age
 	</sql>
 	<sql id="person_c_columns">
 		name, age
 	</sql>
 	<sql id="alias">
-		<include refid="person_s_columns">
-				<property name="prefix" value="p"/>
-		</include>
+		<include refid="person_s_columns"></include>
 	</sql>
 	
-	<insert id="insert" parameterType="PersonDO" useGeneratedKeys="true" keyProperty="id">
+	<insert id="insert" parameterType="com.fj.dao.PersonDao" useGeneratedKeys="true" keyProperty="id">
 		insert into t_person(<include refid="person_c_columns"/>)
 		values(#{name},#{age})
 	</insert>
@@ -24,19 +22,27 @@
 		
 		where id = #{id}
 	</update>
-	
-	<select id="query" parameterType="map" resultType="PersonDO">
-		select <include refid="person_s_columns"><property name="prefix" value="p"></property></include>
-		from person p
-		<!-- <where>
-			<if test="t == 'b'">
-				p.name='a'
-			</if>
-		</where>  -->
-	</select>
 	<update id="updatePerson" parameterType="map">
 		update t_person
 		set age = #{age}
 		where id = #{id}
 	</update>
+	<select id="query" parameterType="map" resultType="com.fj.dao.PersonDao">
+		select <include refid="person_s_columns"/>
+		from t_person p
+	</select>
+	<select id="queryById" parameterType="map" resultType="com.fj.dao.PersonDao">
+		select <include refid="person_s_columns"/>
+		from t_person p
+		where id = #{id}
+	</select>
+	<select id="queryByDynamicId" parameterType="map" resultType="com.fj.dao.PersonDao">
+		select <include refid="person_s_columns"/>
+		from t_person p
+		<where>
+			<if test="id != null">
+				id = #{id}
+			</if>
+		</where>
+	</select>
 </mapper>

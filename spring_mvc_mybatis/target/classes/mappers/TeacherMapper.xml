@@ -161,4 +161,5 @@
     set teaName = #{teaname,jdbcType=VARCHAR}
     where teaId = #{teaid,jdbcType=VARCHAR}
   </update>
+  
 </mapper>

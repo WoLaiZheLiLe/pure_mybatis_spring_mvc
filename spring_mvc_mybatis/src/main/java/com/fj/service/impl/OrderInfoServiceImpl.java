@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fj.dao.OrderInfosMapper;
+import com.fj.domain.OrderInfos;
 import com.fj.service.OrderInfoService;
 
 @Service
@@ -20,8 +21,13 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 		if (updateOrderNo != 0) {
 			throw new RuntimeException("OK-------------");
 		}
-		return false;
-		//throw new RuntimeException("OK");
+		//return false;
+		throw new RuntimeException("OK----------");
+	}
+
+	@Override
+	public OrderInfos selectByPrimaryKey(Integer id) {
+		return orderInfoDao.selectByPrimaryKey(id);
 	}
 
 }

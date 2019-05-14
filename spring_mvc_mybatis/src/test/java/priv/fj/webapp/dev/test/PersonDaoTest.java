@@ -1,5 +1,7 @@
 package priv.fj.webapp.dev.test;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -33,10 +35,17 @@ public class PersonDaoTest extends BaseTest {
 	
 	@Test
 	public void testSelect() {
-		
-		//PersonDO query = personDao.query("a");
-		//System.out.println(JSON.toJSONString(query));
+		List<PersonDO> query = personDao.query();
+		System.out.println(JSON.toJSONString(query));
 	}
 
+	@Test
+	public void testQueryById() {
+	}
 
+	@Test
+	public void testQueryByDynamicId() {
+		List<PersonDO> query = personDao.queryByDynamicId(1);
+		System.out.println(JSON.toJSONString(query));
+	}
 }
